@@ -3,7 +3,7 @@ namespace time {
     //% block="pause3 $ms"
     //% ms.shadow="timePicker"
     export function pause3(ms: number) {
-
+Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
     /**
