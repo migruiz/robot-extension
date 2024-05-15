@@ -157,6 +157,8 @@ namespace turtle {
                 . . . . .
                 `)
         basic.clearScreen();
+        init()
+        paint()
     }
 
 
