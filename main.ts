@@ -35,6 +35,11 @@ namespace turtle {
             basic.clearScreen();
         }
     }
+    /**
+ * Clears
+ */
+    //% blockGap=8
+    //% blockId=turtleClear block="clear"
     function clear(){
         _img = images.createImage(`
                 . . . . .
