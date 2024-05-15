@@ -5,7 +5,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "pxt-kitronik-robotics-board": "github:kitronikltd/pxt-kitronik-robotics-board#v0.1.0"
+        "microturtle": "github:microsoft/pxt-microturtle#v0.0.9"
     },
     "files": [
         "main.blocks",
