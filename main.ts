@@ -35,21 +35,7 @@ namespace turtle {
             basic.clearScreen();
         }
     }
-    /**
- * Clears
- */
-    //% blockGap=8
-    //% blockId=turtleClear block="clear"
-    function clear(){
-        _img = images.createImage(`
-                . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
-                . . . . .
-                `)
-        basic.clearScreen();
-    }
+
 
     function paint() {
         // plot background
@@ -154,6 +140,25 @@ namespace turtle {
         setPosition(2, 2);
         _direction = 3;
     }
+
+
+
+    /**
+ * Clears
+ */
+    //% blockGap=8
+    //% blockId=turtleClear block="clear"
+    export function clear() {
+        _img = images.createImage(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                `)
+        basic.clearScreen();
+    }
+
 
     /** 
      * Sets the brightness
