@@ -1,8 +1,8 @@
 namespace time {
 
-    //% block="pause2 $ms"
+    //% block="pause3 $ms"
     //% ms.shadow="timePicker"
-    export function pause2(ms: number) {
+    export function pause3(ms: number) {
 
     }
 
