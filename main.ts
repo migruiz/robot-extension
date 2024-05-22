@@ -7,7 +7,9 @@ enum BodyPart {
     Body,
 }
 namespace robot {
-    let strip: neopixel.Strip = null
+    let kitroniKStrip: neopixel.Strip = null
+    let leftEyeStrip: neopixel.Strip = null
+    let righEyeStrip: neopixel.Strip = null
     function init() {
         max7219_matrix.setup(
             4,
@@ -20,11 +22,13 @@ namespace robot {
             rotation_direction.clockwise,
             false
         )
-        strip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
+        kitroniKStrip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
+        leftEyeStrip = kitroniKStrip.range(0, 5)
+        righEyeStrip = kitroniKStrip.range(5, 5)
     }
 
     //% block
-    export function showText(text:string) {
+    export function showText(text: string) {
         max7219_matrix.scrollText(
             text,
             75,
@@ -36,18 +40,31 @@ namespace robot {
         max7219_matrix.clearAll()
     }
 
-    //% block="set $bodyPart to color $color"
+    //% block="set $bodyPart leds color to $color"
     //% color.shadow="colorNumberPicker"
     export function showColor(bodyPart: BodyPart, color: number) {
-       /* let components = {
-            r: (color & 0xff0000) >> 16,
-            g: (color & 0x00ff00) >> 8,
-            b: (color & 0x0000ff)
-        };
-        */
-        strip.showColor(color)
+        switch (bodyPart) {
+            case BodyPart.LeftEye:
+                leftEyeStrip.showColor(color)
+                break;
+            case BodyPart.RightEye:
+                righEyeStrip.showColor(color)
+                break;
+        }
     }
 
+    //% block="turn $bodyPart leds off"
+    //% color.shadow="colorNumberPicker"
+    export function clearColor(bodyPart: BodyPart) {
+        switch (bodyPart) {
+            case BodyPart.LeftEye:
+                leftEyeStrip.showColor(NeoPixelColors.Black)
+                break;
+            case BodyPart.RightEye:
+                righEyeStrip.showColor(NeoPixelColors.Black)
+                break;
+        }
+    }
 
     init()
 }
