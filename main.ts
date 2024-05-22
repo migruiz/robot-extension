@@ -46,6 +46,7 @@ namespace robot {
     }
 
     //% block
+    //% group="Display"
     export function showText(text: string) {
         max7219_matrix.scrollText(
             text,
@@ -54,12 +55,14 @@ namespace robot {
         )
     }
     //% block
+    //% group="Display"
     export function clearText() {
         max7219_matrix.clearAll()
     }
 
-    //% block="change $bodyPart leds color to $color"
+    //% block="change $bodyPart lights to $color"
     //% color.shadow="colorNumberPicker"
+    //% group="Lights"
     export function showColor(bodyPart: BodyPart, color: number) {
         switch (bodyPart) {
             case BodyPart.LeftEye:
@@ -71,8 +74,9 @@ namespace robot {
         }
     }
 
-    //% block="turn $bodyPart leds off"
+    //% block="turn $bodyPart lights off"
     //% color.shadow="colorNumberPicker"
+    //% group="Lights"
     export function clearColor(bodyPart: BodyPart) {
         switch (bodyPart) {
             case BodyPart.LeftEye:
@@ -86,6 +90,7 @@ namespace robot {
 
 
     //% block="move $eye to the $eyePosition"
+    //% group="Servos"
     export function moveEye(eye: Eyes, eyePosition: EyePosition) {
         if (eye == Eyes.Left) {
             if (eyePosition == EyePosition.Left) {
@@ -113,6 +118,7 @@ namespace robot {
 
 
     //% block="move hand to the $handPosition"
+    //% group="Servos"
     export function moveHand(handPosition: HandPosition) {
         if (handPosition==HandPosition.Left){
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 70)
@@ -127,6 +133,7 @@ namespace robot {
 
 
     //% block
+    //% group="Sensor"
     export function onMotionDetected(handler: () => void) {
         basic.forever(function () {
             if (pins.analogReadPin(AnalogPin.P10) > 700) {
