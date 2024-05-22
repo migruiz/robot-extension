@@ -6,6 +6,20 @@ enum BodyPart {
     //% block="Body"
     Body,
 }
+
+enum HandPosition {
+    Left,
+    Right
+}
+enum EyePosition {
+    Center,
+    Left,
+    Right
+}
+enum Eyes {
+    Left,
+    Right
+}
 namespace robot {
     let kitroniKStrip: neopixel.Strip = null
     let leftEyeStrip: neopixel.Strip = null
@@ -25,6 +39,9 @@ namespace robot {
         kitroniKStrip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
         leftEyeStrip = kitroniKStrip.range(0, 5)
         righEyeStrip = kitroniKStrip.range(5, 5)
+        Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
+        Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
+        Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
     }
 
     //% block
@@ -65,6 +82,34 @@ namespace robot {
                 break;
         }
     }
+
+
+    //% block="move $eye to the $eyePosition"
+    export function moveEye(eye: Eyes, eyePosition: EyePosition) {
+        if (eye == Eyes.Left) {
+            if (eyePosition == EyePosition.Left) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 60)
+            }
+            else if (eyePosition == EyePosition.Right) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
+            }
+            else{
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
+            }
+        }
+        else {
+            if (eyePosition == EyePosition.Left) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 60)
+            }
+            else if (eyePosition == EyePosition.Right) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
+            }
+            else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+            }
+        }
+    }
+
 
     init()
 }
