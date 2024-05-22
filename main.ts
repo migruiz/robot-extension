@@ -125,5 +125,16 @@ namespace robot {
         }
     }
 
+
+    //% block
+    export function onMotionDetected(handler: () => void) {
+        basic.forever(function () {
+            if (pins.analogReadPin(AnalogPin.P10) > 700) {
+                handler();
+            }
+        })
+    }
+
+
     init()
 }
