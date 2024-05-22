@@ -8,6 +8,7 @@ enum BodyPart {
 }
 
 enum HandPosition {
+    Center,
     Left,
     Right
 }
@@ -57,7 +58,7 @@ namespace robot {
         max7219_matrix.clearAll()
     }
 
-    //% block="set $bodyPart leds color to $color"
+    //% block="change $bodyPart leds color to $color"
     //% color.shadow="colorNumberPicker"
     export function showColor(bodyPart: BodyPart, color: number) {
         switch (bodyPart) {
@@ -110,6 +111,19 @@ namespace robot {
         }
     }
 
+
+    //% block="move hand to the $handPosition"
+    export function moveHand(handPosition: HandPosition) {
+        if (handPosition==HandPosition.Left){
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 70)
+        }
+        else if (handPosition == HandPosition.Right) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 110)
+        }
+        else{
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
+        }
+    }
 
     init()
 }
