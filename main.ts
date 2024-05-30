@@ -3,8 +3,8 @@ enum BodyPart {
     LeftEye,
     //% block="Right Eye"
     RightEye,
-    //% block="Body"
-    Body,
+    //% block="Both Eyes"
+    BothEyes,
 }
 
 enum HandPosition {
@@ -21,7 +21,9 @@ enum Eyes {
     //% block="Left Eye"
     Left,
     //% block="Right Eye"
-    Right
+    Right,
+    //% block="Both Eyes"
+    Both
 }
 namespace robot {
     let kitroniKStrip: neopixel.Strip = null
@@ -73,6 +75,10 @@ namespace robot {
             case BodyPart.RightEye:
                 righEyeStrip.showColor(color)
                 break;
+            case BodyPart.BothEyes:
+                leftEyeStrip.showColor(color)
+                righEyeStrip.showColor(color)
+                break;
         }
     }
 
@@ -85,6 +91,10 @@ namespace robot {
                 leftEyeStrip.showColor(NeoPixelColors.Black)
                 break;
             case BodyPart.RightEye:
+                righEyeStrip.showColor(NeoPixelColors.Black)
+                break;
+            case BodyPart.BothEyes:
+                leftEyeStrip.showColor(NeoPixelColors.Black)
                 righEyeStrip.showColor(NeoPixelColors.Black)
                 break;
         }
@@ -105,7 +115,7 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
             }
         }
-        else {
+        else if (eye == Eyes.Right){
             if (eyePosition == EyePosition.Left) {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 60)
             }
@@ -113,6 +123,20 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
             }
             else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+            }
+        }
+        else{
+            if (eyePosition == EyePosition.Left) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 60)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 60)
+            }
+            else if (eyePosition == EyePosition.Right) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
+            }
+            else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
             }
         }
