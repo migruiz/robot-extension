@@ -101,7 +101,7 @@ namespace robot {
             else if (eyePosition == EyePosition.Right) {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
             }
-            else{
+            else {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
             }
         }
@@ -122,13 +122,13 @@ namespace robot {
     //% block="move hand to the $handPosition"
     //% group="Servos"
     export function moveHand(handPosition: HandPosition) {
-        if (handPosition==HandPosition.Left){
+        if (handPosition == HandPosition.Left) {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 70)
         }
         else if (handPosition == HandPosition.Right) {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 110)
         }
-        else{
+        else {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         }
     }
