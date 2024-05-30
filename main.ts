@@ -18,7 +18,9 @@ enum EyePosition {
     Right
 }
 enum Eyes {
+    //% block="Left Eye"
     Left,
+    //% block="Right Eye"
     Right
 }
 namespace robot {
