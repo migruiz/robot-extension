@@ -29,6 +29,19 @@ namespace robot {
     let kitroniKStrip: neopixel.Strip = null
     let leftEyeStrip: neopixel.Strip = null
     let righEyeStrip: neopixel.Strip = null
+
+    let currentDisplayText: string = null
+
+    basic.forever(function () {
+        if (currentDisplayText != null) {
+            max7219_matrix.scrollText(
+                currentDisplayText,
+                75,
+                500
+            )
+            currentDisplayText = null
+        }
+    })
     function init() {
         max7219_matrix.setup(
             4,
@@ -52,11 +65,7 @@ namespace robot {
     //% block
     //% group="Display"
     export function showText(text: string) {
-        max7219_matrix.scrollText(
-            text,
-            75,
-            500
-        )
+        currentDisplayText = text
     }
     //% block
     //% group="Display"
@@ -115,7 +124,7 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
             }
         }
-        else if (eye == Eyes.Right){
+        else if (eye == Eyes.Right) {
             if (eyePosition == EyePosition.Left) {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
             }
@@ -126,7 +135,7 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
             }
         }
-        else{
+        else {
             if (eyePosition == EyePosition.Left) {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
