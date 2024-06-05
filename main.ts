@@ -25,6 +25,13 @@ enum Eyes {
     //% block="Both Eyes"
     Both
 }
+
+enum Language {
+    English,
+    Spanish
+}
+
+
 namespace robot {
     let kitroniKStrip: neopixel.Strip = null
     let leftEyeStrip: neopixel.Strip = null
@@ -60,6 +67,21 @@ namespace robot {
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+
+        pins.setAudioPinEnabled(false)
+        serial.redirect(
+            SerialPin.P8,
+            SerialPin.P0,
+            BaudRate.BaudRate9600
+        )
+
+    }
+
+
+    //% block="say $text in $language"
+    //% group="Sound"
+    export function say(text: string, language:Language) {
+        serial.writeLine(text)
     }
 
     //% block
