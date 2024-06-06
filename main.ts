@@ -90,11 +90,12 @@ namespace robot {
     //% block="say $text in $language"
     //% group="Sound"
     export function say(text: string, language: Language) {
-        const ttsData = {
+        const serialData = {
+            type: "TTS",
             text,
             lg: language == Language.English ? 'EN' : 'ES'
         }
-        const jsonData = JSON.stringify(ttsData)
+        const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
     }
 
