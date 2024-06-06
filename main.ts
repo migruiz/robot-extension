@@ -1,10 +1,12 @@
-enum BodyPart {
-    //% block="Left Eye"
-    LeftEye,
-    //% block="Right Eye"
-    RightEye,
-    //% block="Both Eyes"
-    BothEyes,
+enum BodyLightsPart {
+    //% block="Left 1"
+    Left1,
+    //% block="Left 2"
+    Left2,
+    //% block="Right 1"
+    Right1,
+    //% block="Right 2"
+    Rigth2,
 }
 
 enum HandPosition {
@@ -98,15 +100,15 @@ namespace robot {
     //% block="change $bodyPart lights to $color"
     //% color.shadow="colorNumberPicker"
     //% group="Lights"
-    export function showColor(bodyPart: BodyPart, color: number) {
-        switch (bodyPart) {
-            case BodyPart.LeftEye:
+    export function showColor(eyes: Eyes, color: number) {
+        switch (eyes) {
+            case Eyes.Left:
                 leftEyeStrip.showColor(color)
                 break;
-            case BodyPart.RightEye:
+            case Eyes.Right:
                 righEyeStrip.showColor(color)
                 break;
-            case BodyPart.BothEyes:
+            case Eyes.Both:
                 leftEyeStrip.showColor(color)
                 righEyeStrip.showColor(color)
                 break;
@@ -116,15 +118,15 @@ namespace robot {
     //% block="turn $bodyPart lights off"
     //% color.shadow="colorNumberPicker"
     //% group="Lights"
-    export function clearColor(bodyPart: BodyPart) {
-        switch (bodyPart) {
-            case BodyPart.LeftEye:
+    export function clearColor(eyes: Eyes) {
+        switch (eyes) {
+            case Eyes.Left:
                 leftEyeStrip.showColor(NeoPixelColors.Black)
                 break;
-            case BodyPart.RightEye:
+            case Eyes.Right:
                 righEyeStrip.showColor(NeoPixelColors.Black)
                 break;
-            case BodyPart.BothEyes:
+            case Eyes.Both:
                 leftEyeStrip.showColor(NeoPixelColors.Black)
                 righEyeStrip.showColor(NeoPixelColors.Black)
                 break;
