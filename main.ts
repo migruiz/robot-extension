@@ -53,6 +53,11 @@ enum Language {
     Spanish
 }
 
+enum Sounds {
+    Police,
+    Party
+}
+
 
 namespace robot {
     let kitroniKStrip: neopixel.Strip = null
@@ -135,6 +140,27 @@ namespace robot {
             type: "TTS",
             text,
             lg: language == Language.English ? 'EN' : 'ES'
+        }
+        const jsonData = JSON.stringify(serialData)
+        serial.writeLine(jsonData)
+    }
+
+    //% block="Play $sound in the background"
+    //% group="Sound"
+    export function playSound(sound: Sounds) {
+        const serialData = {
+            type: "PLAY_SOUND",
+            sound
+        }
+        const jsonData = JSON.stringify(serialData)
+        serial.writeLine(jsonData)
+    }
+
+    //% block="Stop All Sounds"
+    //% group="Sound"
+    export function stopAllSounds() {
+        const serialData = {
+            type: "STOP_ALL_SOUNDS"
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
