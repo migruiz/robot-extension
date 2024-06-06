@@ -7,6 +7,8 @@ enum BodyLightsPart {
     Right1,
     //% block="Right 2"
     Rigth2,
+    //% block="All"
+    All,
 }
 
 enum HandPosition {
@@ -39,6 +41,8 @@ namespace robot {
     let leftEyeStrip: neopixel.Strip = null
     let righEyeStrip: neopixel.Strip = null
 
+    let bodyLightsStrip: neopixel.Strip = null
+
     let currentDisplayText: string = null
 
     basic.forever(function () {
@@ -66,6 +70,9 @@ namespace robot {
         kitroniKStrip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
         leftEyeStrip = kitroniKStrip.range(0, 5)
         righEyeStrip = kitroniKStrip.range(5, 5)
+
+        bodyLightsStrip = neopixel.create(DigitalPin.P2, 4, NeoPixelMode.RGB_RGB)
+
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
@@ -97,10 +104,10 @@ namespace robot {
         max7219_matrix.clearAll()
     }
 
-    //% block="change $bodyPart lights to $color"
+    //% block="change $eyes lights to $color"
     //% color.shadow="colorNumberPicker"
     //% group="Lights"
-    export function showColor(eyes: Eyes, color: number) {
+    export function showEyesColor(eyes: Eyes, color: number) {
         switch (eyes) {
             case Eyes.Left:
                 leftEyeStrip.showColor(color)
@@ -115,22 +122,47 @@ namespace robot {
         }
     }
 
-    //% block="turn $bodyPart lights off"
+    //% block="turn $eyes lights off"
+    //% group="Lights"
+    export function clearEyesColor(eyes: Eyes) {
+        showEyesColor(eyes,NeoPixelColors.Black)
+    }
+
+
+
+
+    //% block="change $bodyPart body lights to $color"
     //% color.shadow="colorNumberPicker"
     //% group="Lights"
-    export function clearColor(eyes: Eyes) {
-        switch (eyes) {
-            case Eyes.Left:
-                leftEyeStrip.showColor(NeoPixelColors.Black)
+    export function showBodyColor(bodyPart: BodyLightsPart, color: number) {
+        switch (bodyPart) {
+            case BodyLightsPart.Left1:
+                bodyLightsStrip.setPixelColor(0, color)
                 break;
-            case Eyes.Right:
-                righEyeStrip.showColor(NeoPixelColors.Black)
+            case BodyLightsPart.Left2:
+                bodyLightsStrip.setPixelColor(1, color)
                 break;
-            case Eyes.Both:
-                leftEyeStrip.showColor(NeoPixelColors.Black)
-                righEyeStrip.showColor(NeoPixelColors.Black)
+            case BodyLightsPart.Right1:
+                bodyLightsStrip.setPixelColor(2, color)
+                break;
+            case BodyLightsPart.Rigth2:
+                bodyLightsStrip.setPixelColor(3, color)
+                break;
+            case BodyLightsPart.All:
+                bodyLightsStrip.setPixelColor(0, color)
+                bodyLightsStrip.setPixelColor(1, color)
+                bodyLightsStrip.setPixelColor(2, color)
+                bodyLightsStrip.setPixelColor(3, color)
                 break;
         }
+        bodyLightsStrip.show()
+    }
+
+    //% block="turn $bodyPart body lights off"
+    //% color.shadow="colorNumberPicker"
+    //% group="Lights"
+    export function clearBodyColor(bodyPart: BodyLightsPart) {
+        showBodyColor(bodyPart, NeoPixelColors.Black)
     }
 
 
