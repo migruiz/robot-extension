@@ -311,10 +311,10 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
             }
             else if (eyeBrowPosition == EyebrowPosition.Up) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
             }
         }
         else {
@@ -324,11 +324,11 @@ namespace robot {
             }
             else if (eyeBrowPosition == EyebrowPosition.Up) {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 110)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
             }
             else {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 70)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
             }
         }
     }
