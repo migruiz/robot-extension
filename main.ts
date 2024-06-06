@@ -196,6 +196,7 @@ namespace robot {
             if (pins.analogReadPin(AnalogPin.P10) > 700) {
                 handler();
             }
+            basic.pause(100)
         })
     }
 
