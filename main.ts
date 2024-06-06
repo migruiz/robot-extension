@@ -137,10 +137,10 @@ namespace robot {
     export function showBodyColor(bodyPart: BodyLightsPart, color: number) {
         switch (bodyPart) {
             case BodyLightsPart.Left1:
-                bodyLightsStrip.setPixelColor(0, color)
+                bodyLightsStrip.setPixelColor(1, color)
                 break;
             case BodyLightsPart.Left2:
-                bodyLightsStrip.setPixelColor(1, color)
+                bodyLightsStrip.setPixelColor(0, color)
                 break;
             case BodyLightsPart.Right1:
                 bodyLightsStrip.setPixelColor(2, color)
@@ -232,6 +232,7 @@ namespace robot {
             if (analogRead > 700) {
                 handler();
             }
+            basic.pause(3000)
         })
     }
 
