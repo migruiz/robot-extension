@@ -145,7 +145,7 @@ namespace robot {
         serial.writeLine(jsonData)
     }
 
-    //% block="Play $sound in the background"
+    //% block="Play $sound sound in the background"
     //% group="Sound"
     export function playSound(sound: Sounds) {
         const serialData = {
