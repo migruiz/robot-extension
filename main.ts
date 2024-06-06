@@ -30,6 +30,24 @@ enum Eyes {
     Both
 }
 
+enum Eyebrows {
+    //% block="Left Eyebrow"
+    Left,
+    //% block="Right Eyebrow"
+    Right,
+    //% block="Both Eyebrows"
+    Both
+}
+
+enum EyebrowPosition {
+    //% block="To the Center"
+    Center,
+    //% block="Up"
+    Up,
+    //% block="Down"
+    Down
+}
+
 enum Language {
     English,
     Spanish
@@ -41,7 +59,7 @@ namespace robot {
     let leftEyeStrip: neopixel.Strip = null
     let righEyeStrip: neopixel.Strip = null
 
-    let initiated = false; 
+    let initiated = false;
 
     let bodyLightsStrip: neopixel.Strip = null
 
@@ -197,7 +215,7 @@ namespace robot {
     //% group="Movement"
     export function blowBubbles() {
         Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1,
-        Kitronik_Robotics_Board.MotorDirection.Forward,60)
+            Kitronik_Robotics_Board.MotorDirection.Forward, 55)
     }
 
     //% block="Stop Bubbles"
@@ -248,6 +266,50 @@ namespace robot {
     }
 
 
+    //% block="move $eyebrow  $eyeBrowPosition"
+    //% group="Movement"
+    export function moveEyebrows(eyebrow: Eyebrows, eyeBrowPosition: EyebrowPosition) {
+        if (eyebrow == Eyebrows.Left) {
+            if (eyeBrowPosition == EyebrowPosition.Center) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
+            }
+            else if (eyeBrowPosition == EyebrowPosition.Up) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 120)
+            }
+            else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 60)
+            }
+        }
+        else if (eyebrow == Eyebrows.Right) {
+            if (eyeBrowPosition == EyebrowPosition.Center) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+            }
+            else if (eyeBrowPosition == EyebrowPosition.Up) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 120)
+            }
+            else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 60)
+            }
+        }
+        else {
+            if (eyeBrowPosition == EyebrowPosition.Center) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+            }
+            else if (eyeBrowPosition == EyebrowPosition.Up) {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 120)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 120)
+            }
+            else {
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 60)
+                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 60)
+            }
+        }
+    }
+
+
+
+
     //% block="move hand to the $handPosition"
     //% group="Movement"
     export function moveHand(handPosition: HandPosition) {
@@ -267,7 +329,7 @@ namespace robot {
     //% group="Sensor"
     export function onMotionDetected(handler: () => void) {
         if (!initiated)
-        return;
+            return;
         basic.forever(function () {
             const analogRead = pins.analogReadPin(AnalogPin.P10)
             pins.digitalReadPin(DigitalPin.P10);
