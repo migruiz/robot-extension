@@ -191,14 +191,14 @@ namespace robot {
 
     //% block="Blow Bubbles"
     //% group="Movement"
-    export function blowBubbles(bodyPart: BodyLightsPart) {
+    export function blowBubbles() {
         Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1,
         Kitronik_Robotics_Board.MotorDirection.Forward,70)
     }
 
     //% block="Stop Bubbles"
     //% group="Movement"
-    export function stopBubbles(bodyPart: BodyLightsPart) {
+    export function stopBubbles() {
         Kitronik_Robotics_Board.motorOff(Kitronik_Robotics_Board.Motors.Motor1)
     }
 
