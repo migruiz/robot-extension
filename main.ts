@@ -193,10 +193,11 @@ namespace robot {
     //% group="Sensor"
     export function onMotionDetected(handler: () => void) {
         basic.forever(function () {
-            if (pins.analogReadPin(AnalogPin.P10) > 700) {
+            const analogRead = pins.analogReadPin(AnalogPin.P10)
+            pins.digitalReadPin(DigitalPin.P10);
+            if (analogRead > 700) {
                 handler();
             }
-            basic.pause(100)
         })
     }
 
