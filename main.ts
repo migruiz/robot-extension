@@ -89,8 +89,13 @@ namespace robot {
 
     //% block="say $text in $language"
     //% group="Sound"
-    export function say(text: string, language:Language) {
-        serial.writeLine(text)
+    export function say(text: string, language: Language) {
+        const ttsData = {
+            text,
+            lg: language == Language.English ? 'EN' : 'ES'
+        }
+        const jsonData = JSON.stringify(ttsData)
+        serial.writeLine(jsonData)
     }
 
     //% block
@@ -125,7 +130,7 @@ namespace robot {
     //% block="turn $eyes lights off"
     //% group="Lights"
     export function clearEyesColor(eyes: Eyes) {
-        showEyesColor(eyes,NeoPixelColors.Black)
+        showEyesColor(eyes, NeoPixelColors.Black)
     }
 
 
