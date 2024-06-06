@@ -41,6 +41,8 @@ namespace robot {
     let leftEyeStrip: neopixel.Strip = null
     let righEyeStrip: neopixel.Strip = null
 
+    let initiated = false; 
+
     let bodyLightsStrip: neopixel.Strip = null
 
     let currentDisplayText: string = null
@@ -77,13 +79,30 @@ namespace robot {
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
 
+        Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
+        Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+
+        
+
         pins.setAudioPinEnabled(false)
         serial.redirect(
             SerialPin.P8,
             SerialPin.P0,
             BaudRate.BaudRate9600
         )
-
+        const serialData = {
+            type: "Init"
+        }
+        const jsonData = JSON.stringify(serialData)
+        serial.writeLine(jsonData)
+        basic.pause(500)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
+        Kitronik_Robotics_Board.motorOff(Kitronik_Robotics_Board.Motors.Motor1)
+        initiated = true
     }
 
 
@@ -165,15 +184,26 @@ namespace robot {
     }
 
     //% block="turn $bodyPart body lights off"
-    //% color.shadow="colorNumberPicker"
     //% group="Lights"
     export function clearBodyColor(bodyPart: BodyLightsPart) {
         showBodyColor(bodyPart, NeoPixelColors.Black)
     }
 
+    //% block="Blow Bubbles"
+    //% group="Movement"
+    export function blowBubbles(bodyPart: BodyLightsPart) {
+        Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1,
+        Kitronik_Robotics_Board.MotorDirection.Forward,70)
+    }
+
+    //% block="Stop Bubbles"
+    //% group="Movement"
+    export function stopBubbles(bodyPart: BodyLightsPart) {
+        Kitronik_Robotics_Board.motorOff(Kitronik_Robotics_Board.Motors.Motor1)
+    }
 
     //% block="move $eye to the $eyePosition"
-    //% group="Servos"
+    //% group="Movement"
     export function moveEye(eye: Eyes, eyePosition: EyePosition) {
         if (eye == Eyes.Left) {
             if (eyePosition == EyePosition.Left) {
@@ -215,7 +245,7 @@ namespace robot {
 
 
     //% block="move hand to the $handPosition"
-    //% group="Servos"
+    //% group="Movement"
     export function moveHand(handPosition: HandPosition) {
         if (handPosition == HandPosition.Left) {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 110)
@@ -232,6 +262,8 @@ namespace robot {
     //% block
     //% group="Sensor"
     export function onMotionDetected(handler: () => void) {
+        if (!initiated)
+        return;
         basic.forever(function () {
             const analogRead = pins.analogReadPin(AnalogPin.P10)
             pins.digitalReadPin(DigitalPin.P10);
