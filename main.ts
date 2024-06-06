@@ -58,6 +58,13 @@ namespace robot {
         }
     })
     function init() {
+        pins.setAudioPinEnabled(false)
+        serial.redirect(
+            SerialPin.P8,
+            SerialPin.P0,
+            BaudRate.BaudRate9600
+        )
+
         max7219_matrix.setup(
             4,
             DigitalPin.P16,
@@ -82,14 +89,11 @@ namespace robot {
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
 
-        
+        clearEyesColor(Eyes.Both)
+        clearBodyColor(BodyLightsPart.All)
+        clearText()
 
-        pins.setAudioPinEnabled(false)
-        serial.redirect(
-            SerialPin.P8,
-            SerialPin.P0,
-            BaudRate.BaudRate9600
-        )
+
         const serialData = {
             type: "Init"
         }
@@ -193,7 +197,7 @@ namespace robot {
     //% group="Movement"
     export function blowBubbles() {
         Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1,
-        Kitronik_Robotics_Board.MotorDirection.Forward,70)
+        Kitronik_Robotics_Board.MotorDirection.Forward,60)
     }
 
     //% block="Stop Bubbles"
