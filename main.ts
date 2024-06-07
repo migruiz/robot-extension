@@ -149,7 +149,7 @@ namespace robot {
         const serialData = {
             type: "TTS",
             text,
-            lg: language == Language.English ? 'EN' : (Language.Spanish ? 'ES' : 'PL')
+            lg: language == Language.English ? 'EN' : (language == Language.Spanish ? 'ES' : 'PL')
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
