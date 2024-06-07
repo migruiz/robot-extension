@@ -205,7 +205,7 @@ namespace robot {
                 righEyeStrip.showColor(color)
                 break;
         }
-        basic.pause(50)
+        basic.pause(20)
     }
 
     //% block="turn $eyes lights off"
@@ -242,7 +242,7 @@ namespace robot {
                 break;
         }
         bodyLightsStrip.show()
-        basic.pause(50)
+        basic.pause(20)
     }
 
     //% block="turn $bodyPart body lights off"
@@ -317,7 +317,7 @@ namespace robot {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, angleToUseServo5)
             servo5Angle = angleToUseServo5
         }
-        basic.pause(750)
+        basic.pause(800)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
@@ -376,7 +376,7 @@ namespace robot {
             servo8Angle = angleToUseServo8
         }
 
-        basic.pause(750)
+        basic.pause(800)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
     }
@@ -402,7 +402,7 @@ namespace robot {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, angleToUse)
             servo1Angle = angleToUse
         }
-        basic.pause(750)
+        basic.pause(800)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
