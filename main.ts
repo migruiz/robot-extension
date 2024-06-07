@@ -74,15 +74,15 @@ namespace robot {
         if (currentDisplayText != null) {
             max7219_matrix.scrollText(
                 currentDisplayText,
-                75,
-                200
+                50,
+                100
             )
             currentDisplayText = null
         }
-        else{
+        else {
             basic.pause(100)
         }
-        
+
     })
     function init() {
         pins.setAudioPinEnabled(false)
@@ -299,72 +299,92 @@ namespace robot {
             }
         }
         basic.pause(750)
-       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
-       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
+        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
+        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
 
-
+    let servo4Angle: number = -1
+    let servo8Angle: number = -1
     //% block="move $eyebrow  $eyeBrowPosition"
     //% group="Movement"
     export function moveEyebrows(eyebrow: Eyebrows, eyeBrowPosition: EyebrowPosition) {
+        let angleToUseServo4:number
+        let angleToUseServo8: number
+
         if (eyebrow == Eyebrows.Left) {
             if (eyeBrowPosition == EyebrowPosition.Center) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
+                angleToUseServo4 = 90
             }
             else if (eyeBrowPosition == EyebrowPosition.Up) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 110)
+                angleToUseServo4 = 110
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 70)
+                angleToUseServo4 = 70
             }
         }
         else if (eyebrow == Eyebrows.Right) {
             if (eyeBrowPosition == EyebrowPosition.Center) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+                angleToUseServo8 = 90
             }
             else if (eyeBrowPosition == EyebrowPosition.Up) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
+                angleToUseServo8 = 70
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
+                angleToUseServo8 = 110
             }
         }
         else {
             if (eyeBrowPosition == EyebrowPosition.Center) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+                angleToUseServo4 = 90
+                angleToUseServo8 = 90
             }
             else if (eyeBrowPosition == EyebrowPosition.Up) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 110)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 70)
+                angleToUseServo4 = 110
+                angleToUseServo8 = 70
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 70)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
+                angleToUseServo4 = 70
+                angleToUseServo8 = 110
             }
         }
+
+        if (servo4Angle != angleToUseServo4) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, angleToUseServo4)
+            servo4Angle = angleToUseServo4
+        }
+        if (servo8Angle != angleToUseServo8) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, angleToUseServo8)
+            servo8Angle = angleToUseServo8
+        }
+
         basic.pause(750)
-       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
-       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
     }
 
 
 
+    let servo1Angle: number = -1
 
     //% block="move hand to the $handPosition"
     //% group="Movement"
     export function moveHand(handPosition: HandPosition) {
+        let angleToUse: number
         if (handPosition == HandPosition.Left) {
-            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 110)
+            angleToUse = 110
         }
         else if (handPosition == HandPosition.Right) {
-            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 70)
+            angleToUse = 70
         }
         else {
-            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
+            angleToUse = 90
+        }
+        if (servo1Angle != angleToUse) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, angleToUse)
+            servo1Angle = angleToUse
         }
         basic.pause(750)
-      //  Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
 
