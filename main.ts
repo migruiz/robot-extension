@@ -50,7 +50,8 @@ enum EyebrowPosition {
 
 enum Language {
     English,
-    Spanish
+    Spanish,
+    Polish
 }
 
 enum Sounds {
@@ -148,7 +149,7 @@ namespace robot {
         const serialData = {
             type: "TTS",
             text,
-            lg: language == Language.English ? 'EN' : 'ES'
+            lg: language == Language.English ? 'EN' : (Language.Spanish ? 'ES' : 'PL')
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
@@ -186,7 +187,7 @@ namespace robot {
     //% block
     //% group="Display"
     export function clearText() {
-        showText("")
+        showText("-")
     }
 
     //% block="change $eyes lights to $color"
@@ -327,7 +328,7 @@ namespace robot {
     //% block="move $eyebrow  $eyeBrowPosition"
     //% group="Movement"
     export function moveEyebrows(eyebrow: Eyebrows, eyeBrowPosition: EyebrowPosition) {
-        let angleToUseServo4:number
+        let angleToUseServo4: number
         let angleToUseServo8: number
 
         if (eyebrow == Eyebrows.Left) {
