@@ -299,8 +299,8 @@ namespace robot {
             }
         }
         basic.pause(500)
-        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
-        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
+       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
+       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
 
 
@@ -344,8 +344,8 @@ namespace robot {
             }
         }
         basic.pause(500)
-        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
-        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
+       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
+       // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
     }
 
 
@@ -364,7 +364,7 @@ namespace robot {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         }
         basic.pause(500)
-        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
+      //  Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
 
