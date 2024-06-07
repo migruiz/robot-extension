@@ -74,8 +74,8 @@ namespace robot {
         if (currentDisplayText != null) {
             max7219_matrix.scrollText(
                 currentDisplayText,
-                50,
-                100
+                70,
+                150
             )
             currentDisplayText = null
         }
@@ -152,7 +152,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
-        basic.pause(2000)
+        basic.pause(2500)
     }
 
     //% block="Play $sound sound in the background"
@@ -372,7 +372,7 @@ namespace robot {
             servo4Angle = angleToUseServo4
         }
         if (servo8Angle != angleToUseServo8) {
-            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, angleToUseServo8)
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, angleToUseServo8)
             servo8Angle = angleToUseServo8
         }
 
