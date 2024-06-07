@@ -75,10 +75,14 @@ namespace robot {
             max7219_matrix.scrollText(
                 currentDisplayText,
                 75,
-                500
+                200
             )
             currentDisplayText = null
         }
+        else{
+            basic.pause(100)
+        }
+        
     })
     function init() {
         pins.setAudioPinEnabled(false)
@@ -122,7 +126,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
-        basic.pause(500)
+        basic.pause(200)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
@@ -143,6 +147,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
+        basic.pause(1500)
     }
 
     //% block="Play $sound sound in the background"
@@ -154,6 +159,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
+        basic.pause(1500)
     }
 
     //% block="Stop All Sounds"
@@ -164,6 +170,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
+        basic.pause(500)
     }
 
     //% block
@@ -174,7 +181,7 @@ namespace robot {
     //% block
     //% group="Display"
     export function clearText() {
-        max7219_matrix.clearAll()
+        showText("")
     }
 
     //% block="change $eyes lights to $color"
@@ -193,6 +200,7 @@ namespace robot {
                 righEyeStrip.showColor(color)
                 break;
         }
+        basic.pause(50)
     }
 
     //% block="turn $eyes lights off"
@@ -229,6 +237,7 @@ namespace robot {
                 break;
         }
         bodyLightsStrip.show()
+        basic.pause(50)
     }
 
     //% block="turn $bodyPart body lights off"
@@ -241,7 +250,7 @@ namespace robot {
     //% group="Movement"
     export function blowBubbles() {
         Kitronik_Robotics_Board.motorOn(Kitronik_Robotics_Board.Motors.Motor1,
-            Kitronik_Robotics_Board.MotorDirection.Forward, 55)
+            Kitronik_Robotics_Board.MotorDirection.Forward, 45)
     }
 
     //% block="Stop Bubbles"
@@ -289,6 +298,9 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
             }
         }
+        basic.pause(500)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
 
 
@@ -331,6 +343,9 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
             }
         }
+        basic.pause(500)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
     }
 
 
@@ -348,6 +363,8 @@ namespace robot {
         else {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         }
+        basic.pause(500)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
 
