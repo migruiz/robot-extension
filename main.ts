@@ -110,11 +110,16 @@ namespace robot {
         bodyLightsStrip = neopixel.create(DigitalPin.P2, 4, NeoPixelMode.RGB_RGB)
 
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
+        servo1Angle = 90
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
+        servo2Angle = 90
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+        servo5Angle = 90
 
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo4, 90)
+        servo4Angle = 90
         Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 90)
+        servo8Angle = 90
 
         clearEyesColor(Eyes.Both)
         clearBodyColor(BodyLightsPart.All)
@@ -126,7 +131,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
-        basic.pause(200)
+        basic.pause(300)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
@@ -259,48 +264,62 @@ namespace robot {
         Kitronik_Robotics_Board.motorOff(Kitronik_Robotics_Board.Motors.Motor1)
     }
 
+    let servo2Angle: number = -1
+    let servo5Angle: number = -1
     //% block="move $eye to the $eyePosition"
     //% group="Movement"
     export function moveEye(eye: Eyes, eyePosition: EyePosition) {
+
+        let angleToUseServo2: number
+        let angleToUseServo5: number
+
         if (eye == Eyes.Left) {
             if (eyePosition == EyePosition.Left) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
+                angleToUseServo5 = 120
             }
             else if (eyePosition == EyePosition.Right) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 60)
+                angleToUseServo5 = 60
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+                angleToUseServo5 = 90
             }
         }
         else if (eye == Eyes.Right) {
             if (eyePosition == EyePosition.Left) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
+                angleToUseServo2 = 120
             }
             else if (eyePosition == EyePosition.Right) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 60)
+                angleToUseServo2 = 60
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
+                angleToUseServo2 = 90
             }
         }
         else {
             if (eyePosition == EyePosition.Left) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 120)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 120)
+                angleToUseServo2 = 120
+                angleToUseServo5 = 120
             }
             else if (eyePosition == EyePosition.Right) {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 60)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 60)
+                angleToUseServo2 = 60
+                angleToUseServo5 = 60
             }
             else {
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, 90)
-                Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
+                angleToUseServo2 = 90
+                angleToUseServo5 = 90
             }
         }
+        if (servo2Angle != angleToUseServo2) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo2, angleToUseServo2)
+            servo2Angle = angleToUseServo2
+        }
+        if (servo5Angle != angleToUseServo5) {
+            Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, angleToUseServo5)
+            servo5Angle = angleToUseServo5
+        }
         basic.pause(750)
-        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
-        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
+        Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
 
     let servo4Angle: number = -1
