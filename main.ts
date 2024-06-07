@@ -147,7 +147,7 @@ namespace robot {
         }
         const jsonData = JSON.stringify(serialData)
         serial.writeLine(jsonData)
-        basic.pause(1500)
+        basic.pause(2000)
     }
 
     //% block="Play $sound sound in the background"
@@ -298,7 +298,7 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo5, 90)
             }
         }
-        basic.pause(500)
+        basic.pause(750)
        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
     }
@@ -343,7 +343,7 @@ namespace robot {
                 Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo8, 110)
             }
         }
-        basic.pause(500)
+        basic.pause(750)
        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
        // Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
     }
@@ -363,7 +363,7 @@ namespace robot {
         else {
             Kitronik_Robotics_Board.servoWrite(Kitronik_Robotics_Board.Servos.Servo1, 90)
         }
-        basic.pause(500)
+        basic.pause(750)
       //  Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
     }
 
