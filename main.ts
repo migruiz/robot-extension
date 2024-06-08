@@ -70,7 +70,7 @@ namespace robot {
     let bodyLightsStrip: neopixel.Strip = null
 
 
-
+    let scrollTextStartTime: number = null
 
 
 
@@ -177,13 +177,19 @@ namespace robot {
     //% block
     //% group="Display"
     export function showText(text: string) {
-
+        max7219_matrix.resetDisplay()
+        control.setInterval(() => {
+            if (scrollTextStartTime != null) {
+                max7219_matrix.resetDisplay()
+            }
+        }, 5 * 1000, control.IntervalMode.Timeout)
+        scrollTextStartTime = control.millis()
         max7219_matrix.scrollText(
             text,
             70,
             150
-        )        
-        max7219_matrix.resetDisplay()
+        )
+        scrollTextStartTime = null
 
     }
 
