@@ -72,6 +72,28 @@ namespace robot {
     let currentDisplayText: string = null
 
     let numberOfTextDisplayed: number = 0
+
+    basic.forever(function () {
+        if (currentDisplayText != null) {
+            max7219_matrix.scrollText(
+                currentDisplayText,
+                70,
+                150
+            )
+            numberOfTextDisplayed = numberOfTextDisplayed + 1;
+            if (numberOfTextDisplayed >= 5) {
+                max7219_matrix.resetDisplay()
+                numberOfTextDisplayed = 0
+            }
+            currentDisplayText = null
+        }
+        else {
+            basic.pause(100)
+        }
+
+    })
+
+
     function init() {
         pins.setAudioPinEnabled(false)
         serial.redirect(
@@ -129,25 +151,7 @@ namespace robot {
 
 
 
-        basic.forever(function () {
-            if (currentDisplayText != null) {
-                max7219_matrix.scrollText(
-                    currentDisplayText,
-                    70,
-                    150
-                )
-                numberOfTextDisplayed = numberOfTextDisplayed + 1;
-                if (numberOfTextDisplayed >= 5) {
-                    max7219_matrix.resetDisplay()
-                    numberOfTextDisplayed = 0
-                }
-                currentDisplayText = null
-            }
-            else {
-                basic.pause(100)
-            }
 
-        })
 
         initiated = true
     }
