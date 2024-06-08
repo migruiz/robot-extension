@@ -71,8 +71,6 @@ namespace robot {
 
 
 
-    let numberOfTextDisplayed: number = 0
-
 
 
 
@@ -184,12 +182,8 @@ namespace robot {
             text,
             70,
             150
-        )
-        numberOfTextDisplayed = numberOfTextDisplayed + 1;
-        if (numberOfTextDisplayed >= 5) {
-            max7219_matrix.resetDisplay()
-            numberOfTextDisplayed = 0
-        }
+        )        
+        max7219_matrix.resetDisplay()
 
     }
 
