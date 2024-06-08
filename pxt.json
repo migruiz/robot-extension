@@ -10,9 +10,9 @@
     },
     "files": [
         "main.blocks",
+        "max7219.ts",
         "main.ts",
-        "README.md",
-        "max7219.ts"
+        "README.md"
     ],
     "testFiles": [
         "test.ts"
