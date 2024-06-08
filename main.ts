@@ -71,7 +71,7 @@ namespace robot {
 
 
     let scrollTextStartTime: number = null
-
+    let scrollTextPrintId: number = 0
 
 
     function init() {
@@ -177,12 +177,14 @@ namespace robot {
     //% block
     //% group="Display"
     export function showText(text: string) {
+        scrollTextPrintId = scrollTextPrintId + 1
+        const instanceId = scrollTextPrintId
         max7219_matrix.resetDisplay()
         control.setInterval(() => {
-            if (scrollTextStartTime != null) {
+            if (scrollTextPrintId == instanceId && scrollTextStartTime != null) {
                 max7219_matrix.resetDisplay()
             }
-        }, 25 * 1000, control.IntervalMode.Timeout)
+        }, 5 * 1000, control.IntervalMode.Timeout)
         scrollTextStartTime = control.millis()
         max7219_matrix.scrollText(
             text,
