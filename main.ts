@@ -73,6 +73,7 @@ namespace robot {
 
     let numberOfTextDisplayed: number = 0
 
+/*
     basic.forever(function () {
         if (currentDisplayText != null) {
             max7219_matrix.scrollText(
@@ -92,7 +93,7 @@ namespace robot {
         }
 
     })
-
+*/
 
     function init() {
         pins.setAudioPinEnabled(false)
@@ -102,6 +103,7 @@ namespace robot {
             BaudRate.BaudRate9600
         )
 
+/*
         max7219_matrix.setup(
             4,
             DigitalPin.P16,
@@ -113,7 +115,7 @@ namespace robot {
             rotation_direction.clockwise,
             false
         )
-
+*/
 
         kitroniKStrip = neopixel.create(DigitalPin.P1, 10, NeoPixelMode.RGB)
         leftEyeStrip = kitroniKStrip.range(0, 5)
