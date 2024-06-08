@@ -55,6 +55,21 @@ namespace max7219_matrix {
         _reversed = reversed
     }
 
+
+    export function resetDisplay() {
+        _displayArray = [] 
+        for (let i = 0; i < (_matrixNum + 2) * 8; i++)  _displayArray.push(0)
+        // initialize MAX7219s
+        _registerAll(_SHUTDOWN, 0) // turn off
+        _registerAll(_DISPLAYTEST, 0) // test mode off
+        _registerAll(_DECODEMODE, 0) // decode mode off
+        _registerAll(_SCANLIMIT, 7) // set scan limit to 7 (column 0-7)
+        _registerAll(_INTENSITY, 15) // set brightness to 15
+        _registerAll(_SHUTDOWN, 1) // turn on
+        clearAll() // clear screen on all MAX7219s
+    }
+
+
     /**
     * (internal function) write command and data to all MAX7219s
     */
