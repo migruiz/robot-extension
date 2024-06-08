@@ -182,6 +182,7 @@ namespace robot {
         max7219_matrix.resetDisplay()
         control.setInterval(() => {
             if (scrollTextPrintId == instanceId && scrollTextStartTime != null) {
+                basic.showNumber(instanceId)
                 max7219_matrix.resetDisplay()
             }
         }, 5 * 1000, control.IntervalMode.Timeout)
