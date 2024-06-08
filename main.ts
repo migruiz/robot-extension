@@ -73,7 +73,7 @@ namespace robot {
 
     let numberOfTextDisplayed: number = 0
 
-/*
+
     basic.forever(function () {
         if (currentDisplayText != null) {
             max7219_matrix.scrollText(
@@ -93,7 +93,7 @@ namespace robot {
         }
 
     })
-*/
+
 
     function init() {
         pins.setAudioPinEnabled(false)
