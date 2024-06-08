@@ -71,6 +71,7 @@ namespace robot {
 
     let currentDisplayText: string = null
 
+    let numberOfTextDisplayed: number = 0
     basic.forever(function () {
         if (currentDisplayText != null) {
             max7219_matrix.scrollText(
@@ -78,6 +79,14 @@ namespace robot {
                 70,
                 150
             )
+            numberOfTextDisplayed = numberOfTextDisplayed + 1;
+            if (numberOfTextDisplayed >= 5) {
+                max7219_matrix.clearAll()
+                max7219_matrix.fillAll()
+                max7219_matrix.brightnessAll(15)
+                max7219_matrix.clearAll()
+                numberOfTextDisplayed = 0
+            }
             currentDisplayText = null
         }
         else {
