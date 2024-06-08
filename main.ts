@@ -182,7 +182,7 @@ namespace robot {
             if (scrollTextStartTime != null) {
                 max7219_matrix.resetDisplay()
             }
-        }, 5 * 1000, control.IntervalMode.Timeout)
+        }, 25 * 1000, control.IntervalMode.Timeout)
         scrollTextStartTime = control.millis()
         max7219_matrix.scrollText(
             text,
