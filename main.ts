@@ -72,28 +72,6 @@ namespace robot {
     let currentDisplayText: string = null
 
     let numberOfTextDisplayed: number = 0
-    basic.forever(function () {
-        if (currentDisplayText != null) {
-            max7219_matrix.scrollText(
-                currentDisplayText,
-                70,
-                150
-            )
-            numberOfTextDisplayed = numberOfTextDisplayed + 1;
-            if (numberOfTextDisplayed >= 5) {
-                max7219_matrix.clearAll()
-                max7219_matrix.fillAll()
-                max7219_matrix.brightnessAll(15)
-                max7219_matrix.clearAll()
-                numberOfTextDisplayed = 0
-            }
-            currentDisplayText = null
-        }
-        else {
-            basic.pause(100)
-        }
-
-    })
     function init() {
         pins.setAudioPinEnabled(false)
         serial.redirect(
@@ -135,8 +113,6 @@ namespace robot {
 
         clearEyesColor(Eyes.Both)
         clearBodyColor(BodyLightsPart.All)
-        clearText()
-
 
         basic.pause(500)
         const serialData = {
@@ -150,6 +126,29 @@ namespace robot {
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo4)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo8)
         Kitronik_Robotics_Board.motorOff(Kitronik_Robotics_Board.Motors.Motor1)
+
+
+
+        basic.forever(function () {
+            if (currentDisplayText != null) {
+                max7219_matrix.scrollText(
+                    currentDisplayText,
+                    70,
+                    150
+                )
+                numberOfTextDisplayed = numberOfTextDisplayed + 1;
+                if (numberOfTextDisplayed >= 5) {
+                    max7219_matrix.resetDisplay()
+                    numberOfTextDisplayed = 0
+                }
+                currentDisplayText = null
+            }
+            else {
+                basic.pause(100)
+            }
+
+        })
+
         initiated = true
     }
 
@@ -194,11 +193,6 @@ namespace robot {
     //% group="Display"
     export function showText(text: string) {
         currentDisplayText = text
-    }
-    //% block
-    //% group="Display"
-    export function clearText() {
-        showText("-")
     }
 
     //% block="change $eyes lights to $color"
