@@ -117,12 +117,19 @@ namespace robot {
         clearEyesColor(Eyes.Both)
         clearBodyColor(BodyLightsPart.All)
 
-        basic.pause(500)
-        const serialData = {
+        basic.pause(250)
+        serial.writeLine(JSON.stringify({
             type: "Init"
-        }
-        const jsonData = JSON.stringify(serialData)
-        serial.writeLine(jsonData)
+        }))
+        basic.pause(250)
+        serial.writeLine(JSON.stringify({
+            type: "Init"
+        }))
+        basic.pause(250)
+        serial.writeLine(JSON.stringify({
+            type: "Init"
+        }))
+
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo1)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo2)
         Kitronik_Robotics_Board.servoStop(Kitronik_Robotics_Board.Servos.Servo5)
