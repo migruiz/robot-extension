@@ -56,7 +56,9 @@ enum Language {
 
 enum Sounds {
     Police,
-    Party
+    Party,
+    Icecream1,
+    Icecream2
 }
 
 
